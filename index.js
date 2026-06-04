@@ -8,18 +8,12 @@ connectDB();
 
 const authRoutes = require("./routes/authRoutes");
 const app = express();
+
 app.use(cors({
-  origin: [
-    "http://localhost:5173", 
-    "http://localhost:5000",
-    "https://user-auth-frontend-mocha.vercel.app"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: "http://localhost:5173",
   credentials: true
 }));
 
-app.options('*', cors());
 
 app.use(express.json());
 app.use(cookieParser());
@@ -31,5 +25,5 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server is running on -> http://localhost:${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
